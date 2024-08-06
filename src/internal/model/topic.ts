@@ -11,6 +11,7 @@ export type TopicAttributes = {
   labels?: string[]
   note?: string
   markers?: MarkerId[]
+  href?: string
 }
 
 export class Topic {
@@ -21,6 +22,7 @@ export class Topic {
   private _summaries: Summary[]
   private _markers: MarkerId[]
   private _labels: string[]
+  private _href: string | null
   private _image: NamedResourceData | null
   private _note: string | null
 
@@ -34,6 +36,7 @@ export class Topic {
     this._labels = attributes?.labels ?? []
     this._markers = attributes?.markers ?? []
     this._note = attributes?.note ?? null
+    this._href = attributes?.href ?? null
   }
 
   get children(): ReadonlyArray<Topic> {
@@ -62,6 +65,10 @@ export class Topic {
     return this._markers
   }
 
+  get href(): string | null {
+      return this._href
+  }
+
   get image(): NamedResourceData | null {
     return this._image
   }
@@ -88,6 +95,10 @@ export class Topic {
 
   public addImage(imageData: NamedResourceData): void {
     this._image = imageData
+  }
+
+  public addHref(href: string): void {
+      this._href = href
   }
 
   public addMarker(markerId: MarkerId): void {

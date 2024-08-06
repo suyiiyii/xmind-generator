@@ -47,6 +47,10 @@ export function Summary(
       topicBuilder.note(newNote)
       return this
     },
+    href(href: string) {
+        topicBuilder.href(href)
+        return this
+    },
 
     labels(labels: ReadonlyArray<string>) {
       topicBuilder.labels(labels)
@@ -103,6 +107,10 @@ export function RootTopic(title: string): RootTopicBuilder {
       topicBuilder.labels(labels)
       return this
     },
+    href(href: string) {
+        topicBuilder.href(href)
+        return this
+    },
     markers(markers: ReadonlyArray<MarkerId>) {
       topicBuilder.markers(markers)
       return this
@@ -131,7 +139,8 @@ interface BaseTopicBuilder {
   image: (data: NamedResourceData) => this
   note: (newNote: string) => this
   labels: (labels: ReadonlyArray<string>) => this
-  markers: (markers: ReadonlyArray<MarkerId>) => this
+  markers: (markers: ReadonlyArray<MarkerId>) => this,
+  href: (href: string) => this
 }
 export interface TopicBuilder extends BaseTopicBuilder {
   summaries: (summaries: ReadonlyArray<SummaryBuilder>) => this

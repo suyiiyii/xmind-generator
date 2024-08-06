@@ -63,7 +63,7 @@ export async function serializeTopic(
     class: 'topic',
     title: topic.title ?? ''
   }
-  const { note, labels, image, markers, summaries } = topic
+  const { note, labels, image, markers, summaries,href } = topic
 
   if (note) {
     obj.notes = {
@@ -73,6 +73,10 @@ export async function serializeTopic(
 
   if (labels.length > 0) {
     obj.labels = [...labels]
+  }
+
+  if (href) {
+    obj.href = href
   }
 
   if (topic.children.length > 0) {

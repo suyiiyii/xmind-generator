@@ -11,6 +11,7 @@ export function makeTopicBuilder(title: string) {
   let _note: string
   let _markers: Array<MarkerId> = []
   let _labels: Array<string> = []
+  let _href: string
 
   const childBuilders: Array<TopicBuilder> = []
   const summaryBuilders: Array<SummaryBuilder> = []
@@ -36,6 +37,10 @@ export function makeTopicBuilder(title: string) {
       _labels.push(...labels)
       return this
     },
+    href(href: string) {
+        _href = href
+        return this
+    },
     markers(markers: ReadonlyArray<MarkerId>) {
       _markers.push(...markers)
       return this
@@ -60,7 +65,8 @@ export function makeTopicBuilder(title: string) {
         ref: _ref,
         note: _note,
         markers: _markers,
-        labels: _labels
+        labels: _labels,
+        href: _href
       }
 
       const topic = new Topic(title, attributes, childTopics)
